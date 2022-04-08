@@ -28,6 +28,8 @@
       <geometry>
         <cylinder length="0.0889" radius="0.17145"/>
       </geometry>
+      <material name="grey"/>
+        <color rgba="0.75 0.75 0.75 1"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0.0 0.0 0.0308"/>

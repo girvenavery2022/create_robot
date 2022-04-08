@@ -204,12 +204,31 @@
       </geometry>
     </collision>
     </link>
+	
+
+  <!-- Caster Wheel -->
+  <link name="front_caster">
+    <visual>
+      <geometry>
+        <sphere radius="${(wheel_radius+wheel_zoff-(base_height/2))}"/>
+      </geometry>
+      <material name="Cyan">
+        <color rgba="0 1.0 1.0 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="caster_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="front_caster"/>
+    <origin xyz="${caster_xoff} 0.0 ${-(base_height/2)}" rpy="0 0 0"/>
+  </joint>
 
     <!-- fixed because there's no transmission -->
     <joint name="front_castor_joint" type="fixed">
       <origin xyz="0.13 0 0.0" rpy="0 0 0" />
       <parent link="base_link" />
-      <child link="front_wheel_link" />
+      <child link="front_caster" />
       <axis xyz="0 1 0" />
     </joint>
 

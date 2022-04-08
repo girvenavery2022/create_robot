@@ -44,14 +44,14 @@ def generate_launch_description():
 
   )    
 
-  create2 = Node(
+  roomba_400 = Node(
     package='create_driver',
     executable='create_driver',
     name='create_driver',
     output='screen',
     parameters=[{
           'config': create_config,
-          'robot_model': 'CREATE_2',
+          'robot_model': 'ROOMBA_400',
           'use_sim_time': use_sim_time
   }])
 
@@ -62,5 +62,5 @@ def generate_launch_description():
     # Nodes
     joy_with_teleop_twist,
     state_publishers,
-    create2
+    roomba_400
 ])
