@@ -6,12 +6,14 @@ from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
 from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import LaunchConfiguration
+from launch.substitutions import LaunchConfiguration, TextSubstitution
 
 
 from launch_ros.actions import Node
 
 def generate_launch_description():
+
+  robot_type = 'create_1'
 
   pkg_create_bringup = get_package_share_directory('create_bringup')
   pkg_teleop_twist_joy = get_package_share_directory('teleop_twist_joy')
@@ -40,7 +42,10 @@ def generate_launch_description():
         os.path.join(pkg_create_bringup, 'launch'),
         '/include/state_publishers/state_publishers.launch.py'
     ]),
-    launch_arguments={'use_sim_time': use_sim_time}.items(),
+    launch_arguments={
+        'use_sim_time': use_sim_time,
+        'robot_type': TextSubstitution(text=str(robot_type))
+    }.items(),
 
   )    
 

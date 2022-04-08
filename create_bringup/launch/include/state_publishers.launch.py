@@ -4,27 +4,36 @@ from ament_index_python.packages import get_package_share_directory
 
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
-from launch.substitutions import Command, LaunchConfiguration
+from launch.substitutions import Command, LaunchConfiguration, PythonExpression
 
 from launch_ros.actions import Node
 
 
-def generate_robot_model(pkg_description):
+def generate_robot_model(pkg_description, robot):
     urdf_dir = os.path.join(pkg_description, 'urdf')
-    urdf_file = os.path.join(urdf_dir, 'create_2/create_2.urdf')
+    urdf_file = os.path.join(urdf_dir, robot)
     with open(urdf_file, 'r') as infp:
         robot_desc = infp.read()
     return robot_desc, urdf_file
 
 
 def generate_launch_description():
+
+    robot = ''
     # ROS packages
     pkg_create_description = get_package_share_directory(
         'create_description')
 
     # Launch arguments
+    robot_type = LaunchConfiguration('robot_type', default='create_2')
     use_sim_time = LaunchConfiguration('use_sim_time', default='false')
-    robot_desc, urdf_file = generate_robot_model(pkg_create_description)
+
+    if(PythonExpression([robot_type,' == create_2'])):
+        robot = 'create_2/create_2.urdf' 
+    else:
+        robot = 'create_1/create_1.urdf'      
+
+    robot_desc, urdf_file = generate_robot_model(pkg_create_description, robot)
 
     # Nodes
     robot_state_publisher = Node(package='robot_state_publisher',
