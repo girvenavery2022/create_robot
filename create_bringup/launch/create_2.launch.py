@@ -22,7 +22,7 @@ def generate_launch_description():
 
   create_config = os.path.join(pkg_create_bringup, 'config/default.yaml')
 
-  use_sim_time = LaunchConfiguration('use_sim_time', default='true')
+  use_sim_time = LaunchConfiguration('use_sim_time', default='false')
 
 
   joy_with_teleop_twist = IncludeLaunchDescription(
@@ -56,7 +56,7 @@ def generate_launch_description():
 
   return LaunchDescription([
     DeclareLaunchArgument('use_sim_time',
-                          default_value='true',
+                          default_value='false',
                           description='Use simulation clock if true'),
     # Nodes
     joy_with_teleop_twist,
