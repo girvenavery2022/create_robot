@@ -38,7 +38,7 @@ def generate_launch_description():
   state_publishers = IncludeLaunchDescription(
     PythonLaunchDescriptionSource([
         os.path.join(pkg_create_bringup, 'launch'),
-        '/include/state_publishers/state_publishers.launch.py'
+        '/include/state_publishers.launch.py'
     ]),
     launch_arguments={'use_sim_time': use_sim_time}.items(),
 
