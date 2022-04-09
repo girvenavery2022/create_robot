@@ -4,7 +4,7 @@ project(create_description)
 find_package(ament_cmake REQUIRED)
 
 install(DIRECTORY rviz/
-  DESTINATION share/${PROJECT_NAME}/launch
+  DESTINATION share/${PROJECT_NAME}/rviz
   PATTERN ".svn" EXCLUDE
 )
 

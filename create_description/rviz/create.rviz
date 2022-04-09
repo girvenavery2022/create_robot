@@ -27,8 +27,6 @@ Panels:
     Name: Time
     SyncMode: 0
     SyncSource: ""
-  - Class: nav2_rviz_plugins/Navigation 2
-    Name: Navigation 2
 Visualization Manager:
   Class: ""
   Displays:
@@ -175,7 +173,7 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-      Name: RobotModel
+      Name: create_2
       TF Prefix: ""
       Update Interval: 0
       Value: true
