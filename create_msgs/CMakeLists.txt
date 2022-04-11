@@ -7,6 +7,7 @@ find_package(std_msgs REQUIRED)
 
 set(msg_files
   msg/Bumper.msg
+  msg/Cliff.msg
   msg/ChargingState.msg
   msg/DefineSong.msg
   msg/Mode.msg

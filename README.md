@@ -173,6 +173,7 @@ $ ros2 launch create_bringup create_2.launch config:=/abs/path/to/config.yaml de
  `battery/temperature` | The temperature of the robot's battery (degrees Celsius) | [std_msgs/Int16][int16]
  `battery/voltage` | Voltage of the robot's battery (V) | [std_msgs/Float32][float32]
  `bumper` | Bumper state message (including light sensors on bumpers) | [create_msgs/Bumper][bumper_msg]
+ `cliff` | Cliff state message  | [create_msgs/Cliff][cliff_msg]
  `clean_button` | 'clean' button is pressed ('play' button for Create 1) | [std_msgs/Empty][empty]
  `day_button` |  'day' button is pressed | [std_msgs/Empty][empty]
  `hour_button` | 'hour' button is pressed | [std_msgs/Empty][empty]
@@ -242,6 +243,8 @@ Contributing to the development and maintenance of _create\_autonomy_ is encoura
     - Added Create 1 description ([#27](https://github.com/AutonomyLab/create_autonomy/pull/27)).
 * [Pedro Grojsgold](https://github.com/pgold)
     - Ported to ROS 2 ([commit](https://github.com/AutonomyLab/create_robot/commit/198345071aa8a9df154d8490feabf5784b78da16)).
+* [Avery Girven](https://github.com/pgold)
+    - Added support for cliff sensors ([#22](https://github.com/AutonomyLab/create_robot/issues/22)).
 
 [libcreate]:  https://github.com/AutonomyLab/libcreate
 [oi_spec]:  https://www.adafruit.com/datasheets/create_2_Open_Interface_Spec.pdf
