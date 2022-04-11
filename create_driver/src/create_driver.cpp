@@ -142,6 +142,7 @@ CreateDriver::CreateDriver()
   omni_char_pub_ = create_publisher<std_msgs::msg::UInt16>("ir_omni", 30);
   mode_pub_ = create_publisher<create_msgs::msg::Mode>("mode", 30);
   bumper_pub_ = create_publisher<create_msgs::msg::Bumper>("bumper", 30);
+  cliff_pub_ = create_publisher<create_msgs::msg::Cliff>("cliff", 30);
   wheeldrop_pub_ = create_publisher<std_msgs::msg::Empty>("wheeldrop", 30);
   wheel_joint_pub_ = create_publisher<sensor_msgs::msg::JointState>("joint_states", 10);
 
@@ -289,6 +290,7 @@ bool CreateDriver::update()
   publishOmniChar();
   publishMode();
   publishBumperInfo();
+  publishCliffInfo();
   publishWheeldrop();
 
   // If last velocity command was sent longer than latch duration, stop robot
@@ -627,6 +629,20 @@ void CreateDriver::publishBumperInfo()
   }
 
   bumper_pub_->publish(bumper_msg_);
+}
+
+void CreateDriver::publishCliffInfo()
+{
+  cliff_msg_.header.stamp = now();
+
+  if(model_.getVersion() >= create::V_3)
+  {
+    cliff_msg_.is_cliff_left = robot_->isCliffLeft();
+    cliff_msg_.is_cliff_center_left = robot_->isCliffFrontLeft();
+    cliff_msg_.is_cliff_center_right = robot_->isCliffFrontRight();
+    cliff_msg_.is_cliff_right = robot_->isCliffRight();
+  }
+  cliff_pub_->publish(cliff_msg_);
 }
 
 void CreateDriver::publishWheeldrop()
